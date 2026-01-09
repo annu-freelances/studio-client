@@ -12,7 +12,7 @@ const PortfolioTeaser = () => {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-neutral-50">
+    <section className="py-12 px-6 md:px-12 bg-neutral-50">
       <div className="max-w-[1600px] mx-auto">
         {/* Header with Project Count */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">

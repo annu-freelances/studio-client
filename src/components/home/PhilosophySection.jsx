@@ -2,7 +2,7 @@ import React from 'react';
 import { PlayCircle } from 'lucide-react';
 
 const PhilosophySection = () => (
-  <section className="py-32 px-6 md:px-12 bg-white text-[#0a1a14] overflow-hidden">
+  <section className="py-12 px-6 md:px-12 bg-white text-[#0a1a14] overflow-hidden">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-20 items-center">
       <div className="flex-1 relative">
         <div className="absolute -top-10 -left-10 text-[200px] font-black text-neutral-100 -z-10 select-none">"</div>

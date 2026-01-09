@@ -9,7 +9,7 @@ const ServiceCards = () => {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-[#0a1a14] text-white">
+    <section className="py-12 px-6 md:px-12 bg-[#0a1a14] text-white">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
           <div>

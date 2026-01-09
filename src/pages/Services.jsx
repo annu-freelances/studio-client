@@ -61,27 +61,13 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="bg-[#050a08] text-white min-h-screen font-sans selection:bg-emerald-500/30">
-      
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-40 pb-24 px-6 md:px-12 text-center overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="max-w-screen-2xl  relative z-10">
-          <p className="text-emerald-500 tracking-[0.4em]  text-l mb-6 flex items-center gap-4">
-            <span className="w-12 h-[3px] bg-emerald-500"></span> Visual Capabilities
-          </p>
-          <h1 className="text-7xl md:text-9xl font-black  tracking-tighter leading-[0.85] mb-8">
-            Services <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-emerald-800  font-light">Defined.</span>
-          </h1>
-          <p className=" text-gray-400 text-lg md:text-xl leading-relaxed font-light">
-            We offer more than photography. <br />
-             We offer a curated production environment where every frame is treated as a piece of architectural art.
-          </p>
-        </div>
-      </section>
+    <div className="bg-[#050a08] text-white min-h-screen pt-3 font-sans selection:bg-emerald-500/30">
+    
+
+
 
       {/* 2. SERVICES SHOWCASE (Editorial Card Grid) */}
-      <section className="py-24 px-6 md:px-12 bg-[#050a08]">
+      <section className="py-24 px-6  md:px-12 bg-[#050a08]">
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {services.map((service, index) => (
             <div 
