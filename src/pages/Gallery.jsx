@@ -5,14 +5,14 @@ const PhotographyGallery = () => {
   const [filter, setFilter] = useState("All");
 
   const cards = [
-    { id: 1, title: "The Royal Groom's Procession", category: "Weddings", icon: <Star size={16}/>, img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800", size: "tall" },
-    { id: 2, title: "Golden Hour Haldi Rituals", category: "Pre-Wedding", icon: <ImageIcon size={16}/>, img: "https://images.unsplash.com/photo-1610173827002-62c0f1f05d04?auto=format&fit=crop&w=800", size: "small" },
+    { id: 1, title: "The Royal Groom's Procession", category: "Weddings", icon: <Star size={16}/>, img: "https://images.unsplash.com/photo-1665960212625-3c6b274222ed?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", size: "tall" },
+    { id: 2, title: "Golden Hour Haldi Rituals", category: "Pre-Wedding", icon: <ImageIcon size={16}/>, img: "https://images.unsplash.com/photo-1740416331524-7d40b988223b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", size: "small" },
     { id: 3, title: "Symmetry of Henna Art", category: "Mehndi", icon: <Heart size={16}/>, img: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=800", size: "small" },
     { id: 4, title: "The Eternal Phere", category: "Ceremonies", icon: <Camera size={16}/>, img: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800", size: "wide" },
-    { id: 5, title: "Vibrant Sangeet Nights", category: "Celebrations", icon: <Star size={16}/>, img: "https://images.unsplash.com/photo-1541010321111-96d12ad70217?auto=format&fit=crop&w=800", size: "small" },
-    { id: 6, title: "A Regal Bridal Portrait", category: "Portraits", icon: <ImageIcon size={16}/>, img: "https://images.unsplash.com/photo-1632338638922-356985012921?auto=format&fit=crop&w=800", size: "tall" },
-    { id: 7, title: "Candid Family Joys", category: "Candid", icon: <Heart size={16}/>, img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800", size: "small" },
-    { id: 8, title: "Temple Wedding Serenity", category: "Weddings", icon: <Camera size={16}/>, img: "https://images.unsplash.com/photo-1604351810934-8c4371995c73?auto=format&fit=crop&w=800", size: "small" },
+    { id: 5, title: "Vibrant Sangeet Nights", category: "Celebrations", icon: <Star size={16}/>, img: "https://images.unsplash.com/photo-1766763845299-32226a613f22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEwfHxoaW5kdSUyMHdlZGRpbmd8ZW58MHx8MHx8fDA%3D", size: "small" },
+    { id: 6, title: "A Regal Bridal Portrait", category: "Portraits", icon: <ImageIcon size={16}/>, img: "https://images.unsplash.com/photo-1600685912448-8bc35c141e18?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", size: "tall" },
+    { id: 7, title: "Candid Family Joys", category: "Candid", icon: <Heart size={16}/>, img: "https://images.unsplash.com/photo-1660455559502-8f71b47443c4?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", size: "small" },
+    { id: 8, title: "Temple Wedding Serenity", category: "Weddings", icon: <Camera size={16}/>, img: "https://plus.unsplash.com/premium_photo-1661893944387-1347f1b01f59?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", size: "small" },
   ];
 
   return (
@@ -26,10 +26,10 @@ const PhotographyGallery = () => {
             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200" className="w-full h-full object-cover" alt="Main" />
           </div>
           <div className="w-1/4 h-full -ml-32 skew-x-[-12deg] border-l-[12px] border-emerald-950 overflow-hidden relative">
-             <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=800" className="w-full h-full object-cover skew-x-[12deg] scale-150" alt="Side 1"/>
+             <img src="https://images.unsplash.com/photo-1740416331524-7d40b988223b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover skew-x-[12deg] scale-150" alt="Side 1"/>
           </div>
           <div className="w-1/4 h-full -ml-32 skew-x-[-12deg] border-l-[12px] border-emerald-950 overflow-hidden relative">
-             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800" className="w-full h-full object-cover skew-x-[12deg] scale-150" alt="Side 2"/>
+             <img src="https://images.unsplash.com/photo-1665960212625-3c6b274222ed?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover skew-x-[12deg] scale-150" alt="Side 2"/>
           </div>
         </div>
         

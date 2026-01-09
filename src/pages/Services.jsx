@@ -18,7 +18,7 @@ const ServicesPage = () => {
       description: "Documentary-style elegance for modern unions. Capturing the quiet whispers and the grand vows.",
       duration: "8-12 Hours",
       price: "From $3,500",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200"
+      image: "https://images.unsplash.com/photo-1740416331524-7d40b988223b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       id: 'fashion',
