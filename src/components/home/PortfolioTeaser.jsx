@@ -2,14 +2,50 @@ import React from 'react';
 import { ArrowUpRight, ArrowRight, Zap } from 'lucide-react';
 
 const PortfolioTeaser = () => {
-  const projects = [
-    { id: 1, title: "Urban Noir", category: "Cinema", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800", size: "tall" },
-    { id: 2, title: "Vogue Editorial", category: "Imagery", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800", size: "short" },
-    { id: 3, title: "Abstract Light", category: "Post-Process", img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800", size: "short" },
-    { id: 4, title: "Golden Hour", category: "Cinema", img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800", size: "tall" },
-    { id: 5, title: "Motion Study", category: "Production", img: "https://images.unsplash.com/photo-1551316679-9c6ae9dec224?q=80&w=800", size: "short" },
-    { id: 6, title: "Silent Frames", category: "Imagery", img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800", size: "tall" },
-  ];
+const projects = [
+  { 
+    id: 1, 
+    title: "The Royal Mandap", 
+    category: "Ceremony", 
+    img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800", 
+    size: "tall" 
+  },
+  { 
+    id: 2, 
+    title: "Henna Artistry", 
+    category: "Mehndi", 
+    img: "https://cdn.pixabay.com/photo/2022/07/16/08/54/bride-7324803_640.jpg", 
+    size: "short" 
+  },
+  { 
+    id: 3, 
+    title: "Golden Jewels", 
+    category: "Details", 
+    img: "https://cdn.pixabay.com/photo/2020/05/01/14/09/indian-5117279_640.jpg", 
+    size: "short" 
+  },
+  { 
+    id: 4, 
+    title: "The Baraat Entry", 
+    category: "Tradition", 
+    img: "https://cdn.pixabay.com/photo/2020/12/10/19/06/wedding-5821105_640.jpg", 
+    size: "tall" 
+  },
+  { 
+    id: 5, 
+    title: "Floral Decor", 
+    category: "Setup", 
+    img: "https://cdn.pixabay.com/photo/2023/09/12/11/02/ai-generated-8248592_640.jpg", 
+    size: "short" 
+  },
+  { 
+    id: 6, 
+    title: "Bridal Portrait", 
+    category: "Candid", 
+    img: "https://cdn.pixabay.com/photo/2023/12/19/11/16/red-8457517_640.jpg", 
+    size: "tall" 
+  },
+];
 
   return (
     <section className="py-12 px-6 md:px-12 bg-neutral-50">
