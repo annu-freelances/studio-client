@@ -11,16 +11,18 @@ import {
   REGISTER,
 } from "redux-persist";
 import AdminReducer from "./reducer/AdminSlice";
+import ImagesSlice from "./reducer/ImagesSlice";
 
 const persistConfig = {
   key: "photographer_root",
   version: 1,
   storage,
-  whitelist: ["admin"], // Only admin state is persisted, key must match the reducer key
+  whitelist: ["admin", "Image"], 
 };
 
 const rootReducer = combineReducers({
   admin: AdminReducer,
+  Image: ImagesSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

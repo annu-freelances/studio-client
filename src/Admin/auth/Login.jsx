@@ -35,7 +35,6 @@ const Login = () => {
       });
       navigate("/admin/dashbord")
     } catch (error) {
-      // Show error returned by API if available
       if (
         error.response &&
         error.response.data &&
@@ -92,15 +91,11 @@ const Login = () => {
         <p className="text-center mt-2 text-zinc-400 text-sm font-semibold">
           Sign in to your Account
         </p>
-
         <form className="w-full mt-6" onSubmit={submitHandler}>
           <div className="relative w-full">
-            {/* Icon */}
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Mail className="w-5 h-5 text-gray-700" />
             </div>
-
-            {/* Input */}
             <input
               type="email"
               name="email"
@@ -113,15 +108,10 @@ const Login = () => {
               }
             />
           </div>
-
-          {/* password */}
           <div className="relative w-full mt-3">
-            {/* Icon */}
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Lock className="w-5 h-5 text-gray-700" />
             </div>
-
-            {/* Input */}
             <input
               type={showpassword ? "text" : "password"}
               name="password"
@@ -133,7 +123,6 @@ const Login = () => {
                 setAdminInput({ ...adminInput, password: e.target.value })
               }
             />
-
             <button
               type="button"
               onClick={clickhandler}
@@ -148,11 +137,9 @@ const Login = () => {
               )}
             </button>
           </div>
-
           <p className="text-md text-blue-700 capitalize font-semibold my-1 text-right">
             forgot password?
           </p>
-
           <button
             type="submit"
             className="w-full bg-blue-700 flex items-center justify-center text-white font-semibold py-2.5 rounded hover:bg-blue-800 transition"
@@ -161,7 +148,7 @@ const Login = () => {
             {loading ? (
                 <div className="w-6 h-6 animate-spin border-b-2 border-t-2  rounded-full "></div>
             ) : (
-              "login"
+              "Login"
             )}
           </button>
           {error && (
@@ -177,7 +164,6 @@ const Login = () => {
           </span>
           <div className="flex-grow h-px bg-gray-300 self-center" />
         </div>
-
         <div className="flex items-center justify-between">
           <label className="flex items-center gap-2 cursor-pointer select-none">
             <input
@@ -189,7 +175,6 @@ const Login = () => {
               Remember me
             </span>
           </label>
-
           <Link to="/" className="text-blue-800 font-semibold">
             Back to Home
           </Link>
