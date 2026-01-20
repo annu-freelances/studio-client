@@ -1,11 +1,11 @@
 import React from 'react'
-import LeftDashborad from '../../components/LeftDashborad'
+import LeftNavigation from '../../components/LeftNavigation'
 import CreatedRight from './CreatedRight'
 
 const CreateImage = () => {
   return (
     <div className='flex w-full h-screen'>
-      <LeftDashborad />
+      <LeftNavigation />
       <CreatedRight />
     </div>
   )

@@ -1,11 +1,11 @@
 import React from 'react'
-import LeftDashborad from '../../components/LeftDashborad'
+import LeftNavigation from '../../components/LeftNavigation'
 import RightImages from './RightImages'
 
 const Images = () => {
   return (
     <div className='flex '>
-      <LeftDashborad />
+      <LeftNavigation />
       <RightImages />
     </div>
   )

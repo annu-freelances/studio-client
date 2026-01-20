@@ -1,14 +1,14 @@
 import React from 'react'
 import LeftNavigation from '../../components/LeftNavigation'
-import UpdatedRight from './UpdatedRight'
+import RightCustomer from './RightCustomer'
 
-const UpdatedImages = () => {
+const Customer = () => {
   return (
     <div className='flex w-full h-screen'>
       <LeftNavigation />
-      <UpdatedRight />
+      <RightCustomer />
     </div>
   )
 }
 
-export default UpdatedImages
+export default Customer 

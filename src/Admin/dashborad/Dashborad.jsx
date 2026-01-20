@@ -1,11 +1,11 @@
 import React from 'react'
 import RightDashborad from '../dashborad/RightDashborad'
-import LeftDashborad from '../../components/LeftDashborad'
+import LeftNavigation from '../../components/LeftNavigation'
 
 const Dashborad = () => {
   return (
     <div className='flex w-full h-screen '>
-      <LeftDashborad /> 
+      <LeftNavigation /> 
       <RightDashborad />
     </div>
   )

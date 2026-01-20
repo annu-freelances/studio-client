@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import instance from '../utils/axios'
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import instance from "../utils/axios";
 
 const ProtectedRoutes = ({ children }) => {
   const navigate = useNavigate();
+  const ProtectedRoutesApi = async () => {
+    try {
+      const response = await instance.get("/me", {
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.error(error);
+      navigate("/admin/login");
+    }
+  };
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await instance.get("/me", { withCredentials: true });
-      } catch (error) {
-        navigate('/admin/login');
-      }
-    };
-    checkAuth();
+    ProtectedRoutesApi();
   }, []);
-
-  return (
-    <>
-      {children}
-    </>
-  );
+  return children;
 };
 
 export default ProtectedRoutes;

@@ -1,69 +1,22 @@
 import React, { useState } from "react";
 import { Mail } from "lucide-react";
 import { Lock } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import instance from "../../utils/axios";
+import { Link } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { setAdmin } from "../../redux/reducer/AdminSlice";
 
-const Login = () => {
-  const [showpassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch()
-  const navigate =  useNavigate()
-  const [error, setError] = useState()
-  const [loading, setLoading] = useState(false)
-  const [adminInput, setAdminInput] = useState({
-    email: "",
-    password: "",
-  });
+const Register = () => {
+    const [ loading, setLoading ] = useState(false)
+    const [ error, setError ] = useState(null)
+    const [ showpassword, setShowPassword ] = useState(false)
+ 
+    const clickhandler = (e) => {
+        e.preventDefault();
+    
+        setShowPassword((prev) => !prev);
+      };
 
-  const adminLoginApi = async () => {
-    try {
-      setLoading(true);
-      setError("");
-      const result = await instance.post("/login", adminInput, {
-        withCredentials: true,
-      });
-      dispatch(setAdmin(result.data.result))
-      toast.success(result.data.message);
-      setAdminInput({
-        email: "",
-        password: "",
-      });
-      navigate("/admin/dashboard")
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        setError(error.response.data.message);
-        toast.error(error.response.data.message);
-      } else if (error.message) {
-        setError(error.message);
-        toast.error(error.message);
-      } else {
-        setError("Internal server error");
-        toast.error("Internal server error");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    adminLoginApi();
-  };
-
-  const clickhandler = (e) => {
-    e.preventDefault();
-
-    setShowPassword((prev) => !prev);
-  };
+  
   return (
     <div className="w-full h-screen relative">
       <img
@@ -91,7 +44,7 @@ const Login = () => {
         <p className="text-center mt-2 text-zinc-400 text-sm font-semibold">
           Sign in to your Account
         </p>
-        <form className="w-full mt-6" onSubmit={submitHandler}>
+        <form className="w-full mt-6">
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Mail className="w-5 h-5 text-gray-700" />
@@ -102,10 +55,7 @@ const Login = () => {
               placeholder="Email Address"
               className="  w-full  rounded-xl border border-gray-300  bg-white  py-3 pl-11 pr-4 text-gray-700 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition"
               autoComplete="email"
-              value={adminInput.email}
-              onChange={(e) =>
-                setAdminInput({ ...adminInput, email: e.target.value })
-              }
+              //value={adminInput.email}
             />
           </div>
           <div className="relative w-full mt-3">
@@ -118,14 +68,9 @@ const Login = () => {
               placeholder="Enter Your Password"
               className="  w-full  rounded-xl border border-gray-300  bg-white  py-3 pl-11 pr-4 text-gray-700 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition"
               autoComplete="email"
-              value={adminInput.password}
-              onChange={(e) =>
-                setAdminInput({ ...adminInput, password: e.target.value })
-              }
             />
             <button
               type="button"
-              onClick={clickhandler}
               className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700 focus:outline-none"
               tabIndex={-1}
               aria-label={showpassword ? "Hide password" : "Show password"}
@@ -142,6 +87,7 @@ const Login = () => {
           </p>
           <button
             type="submit"
+            onClick={clickhandler}
             className="w-full bg-blue-700 flex items-center justify-center text-white font-semibold py-2.5 rounded hover:bg-blue-800 transition"
             disabled={loading}
           >
@@ -184,4 +130,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
