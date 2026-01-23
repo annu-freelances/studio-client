@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
   Clock, ChevronRight, Calendar as CalendarIcon, CheckCircle2, 
-  ArrowRight, Globe, ShieldCheck, Zap, Sparkles, Camera
+  ArrowRight, Globe, ShieldCheck, Zap, Sparkles 
 } from 'lucide-react';
+import { ThemeContext } from '../context/themeProvider'; // Ensure path is correct
 
 const ServicesPage = () => {
   const [bookingData, setBookingData] = useState({
@@ -11,6 +12,10 @@ const ServicesPage = () => {
     slot: null
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // 1. Access Theme
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === 'dark';
 
   const services = [
     {
@@ -61,12 +66,18 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="bg-[#0a1a14] text-white min-h-screen font-sans selection:bg-emerald-500/30">
+    <div className={`min-h-screen font-sans selection:bg-emerald-500/30 transition-colors duration-500 ${
+        isDark ? 'bg-[#0a1a14] text-white' : 'bg-neutral-50 text-neutral-900'
+    }`}>
       
       {/* 1. EDITORIAL SERVICES GRID */}
       <section className="py-24 px-6 md:px-12 max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {services.map((service) => (
-          <div key={service.id} className="group relative bg-[#0a1a14]/40 border border-white/5 rounded-3xl overflow-hidden hover:border-emerald-500/30 transition-all duration-700">
+          <div key={service.id} className={`group relative border rounded-3xl overflow-hidden hover:border-emerald-500/30 transition-all duration-700 ${
+              isDark 
+                ? 'bg-[#0a1a14]/40 border-white/5' 
+                : 'bg-white border-neutral-200 shadow-sm hover:shadow-xl'
+          }`}>
             <div className="flex flex-col lg:flex-row h-full">
               <div className="lg:w-1/2 overflow-hidden">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" />
@@ -74,13 +85,17 @@ const ServicesPage = () => {
               <div className="lg:w-1/2 p-8 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-bold uppercase tracking-tighter mb-4">{service.title}</h3>
-                  <p className="text-gray-400 text-sm font-light leading-relaxed mb-6">{service.description}</p>
-                  <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-emerald-400 font-bold">
+                  <p className={`text-sm font-light leading-relaxed mb-6 ${
+                      isDark ? 'text-gray-400' : 'text-neutral-500'
+                  }`}>{service.description}</p>
+                  <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-emerald-500 font-bold">
                     <span className="flex items-center gap-1"><Clock size={12} /> {service.duration}</span>
                     <span>From {service.price}</span>
                   </div>
                 </div>
-                <button onClick={() => handleServiceClick(service)} className="mt-8 flex items-center justify-between w-full py-4 border-b border-white/10 group-hover:border-emerald-500 transition-colors">
+                <button onClick={() => handleServiceClick(service)} className={`mt-8 flex items-center justify-between w-full py-4 border-b group-hover:border-emerald-500 transition-colors ${
+                    isDark ? 'border-white/10' : 'border-neutral-100'
+                }`}>
                   <span className="text-xs uppercase tracking-widest font-bold">Reserve Session</span>
                   <ChevronRight size={18} className="group-hover:translate-x-2 transition-transform" />
                 </button>
@@ -91,7 +106,11 @@ const ServicesPage = () => {
       </section>
 
       {/* 2. MODERN RESERVATION ENGINE */}
-      <section id="booking-engine" className="py-32 px-6 md:px-12 bg-[#0a1a14]/20 border-y border-white/5">
+      <section id="booking-engine" className={`py-32 px-6 md:px-12 border-y transition-colors duration-500 ${
+          isDark 
+            ? 'bg-[#0a1a14]/20 border-white/5' 
+            : 'bg-neutral-100 border-neutral-200'
+      }`}>
         <div className="max-w-7xl mx-auto">
           {!isSubmitted ? (
             <div className="grid lg:grid-cols-12 gap-12 items-start">
@@ -100,11 +119,13 @@ const ServicesPage = () => {
               <div className="lg:col-span-8 space-y-10">
                 <div>
                   <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4">Book Your <span className="text-emerald-500">Slot</span></h2>
-                  <p className="text-gray-500 uppercase text-xs tracking-[0.3em]">Precision Scheduling • Real-time Availability</p>
+                  <p className="text-emerald-500/70 uppercase text-xs tracking-[0.3em]">Precision Scheduling • Real-time Availability</p>
                 </div>
 
                 {/* Step 1: Service Quick Pick */}
-                <div className="bg-[#050a08] border border-white/5 rounded-[32px] p-8">
+                <div className={`border rounded-[32px] p-8 ${
+                    isDark ? 'bg-[#050a08] border-white/5' : 'bg-white border-neutral-200 shadow-sm'
+                }`}>
                   <h3 className="text-xs uppercase tracking-widest text-emerald-500 mb-6 flex items-center gap-2">
                     <span className="w-8 h-[1px] bg-emerald-500"></span> 01. Select Production
                   </h3>
@@ -114,7 +135,11 @@ const ServicesPage = () => {
                         key={s.id}
                         onClick={() => setBookingData({...bookingData, service: s})}
                         className={`p-4 rounded-2xl border text-[10px] uppercase font-bold tracking-widest transition-all ${
-                          bookingData.service?.id === s.id ? 'bg-emerald-500 text-black border-emerald-500' : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20'
+                          bookingData.service?.id === s.id 
+                            ? 'bg-emerald-500 text-black border-emerald-500' 
+                            : isDark 
+                                ? 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20' 
+                                : 'bg-neutral-50 border-neutral-100 text-neutral-500 hover:border-emerald-500 hover:text-emerald-600'
                         }`}
                       >
                         {s.title.split(' ')[0]}
@@ -125,7 +150,9 @@ const ServicesPage = () => {
 
                 {/* Step 2 & 3: Calendar & Time */}
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-[#050a08] border border-white/5 rounded-[32px] p-8">
+                  <div className={`border rounded-[32px] p-8 ${
+                      isDark ? 'bg-[#050a08] border-white/5' : 'bg-white border-neutral-200 shadow-sm'
+                  }`}>
                     <h3 className="text-xs uppercase tracking-widest text-emerald-500 mb-6 flex items-center gap-2">
                       <CalendarIcon size={14} /> 02. Date
                     </h3>
@@ -135,7 +162,11 @@ const ServicesPage = () => {
                           key={i}
                           onClick={() => setBookingData({...bookingData, date: i+1})}
                           className={`aspect-square rounded-full flex items-center justify-center text-xs transition-all ${
-                            bookingData.date === i+1 ? 'bg-emerald-500 text-black font-bold' : 'text-gray-500 hover:bg-white/10'
+                            bookingData.date === i+1 
+                                ? 'bg-emerald-500 text-black font-bold' 
+                                : isDark 
+                                    ? 'text-gray-500 hover:bg-white/10' 
+                                    : 'text-neutral-400 hover:bg-emerald-50 hover:text-emerald-600'
                           }`}
                         >
                           {i+1}
@@ -144,7 +175,9 @@ const ServicesPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-[#050a08] border border-white/5 rounded-[32px] p-8">
+                  <div className={`border rounded-[32px] p-8 ${
+                       isDark ? 'bg-[#050a08] border-white/5' : 'bg-white border-neutral-200 shadow-sm'
+                  }`}>
                     <h3 className="text-xs uppercase tracking-widest text-emerald-500 mb-6 flex items-center gap-2">
                       <Clock size={14} /> 03. Time
                     </h3>
@@ -154,7 +187,11 @@ const ServicesPage = () => {
                           key={slot}
                           onClick={() => setBookingData({...bookingData, slot: slot})}
                           className={`w-full py-3 px-6 rounded-xl border text-left text-[10px] uppercase font-bold tracking-widest transition-all ${
-                            bookingData.slot === slot ? 'bg-emerald-500 border-emerald-500 text-black' : 'bg-white/5 border-white/5 text-gray-500 hover:border-emerald-500/50'
+                            bookingData.slot === slot 
+                                ? 'bg-emerald-500 border-emerald-500 text-black' 
+                                : isDark 
+                                    ? 'bg-white/5 border-white/5 text-gray-500 hover:border-emerald-500/50' 
+                                    : 'bg-neutral-50 border-neutral-100 text-neutral-500 hover:border-emerald-500 hover:text-emerald-600'
                           }`}
                         >
                           {slot}
@@ -207,8 +244,8 @@ const ServicesPage = () => {
                 <CheckCircle2 size={48} className="text-black stroke-[3px]" />
               </div>
               <h3 className="text-6xl font-black uppercase tracking-tighter mb-4">Confirmed.</h3>
-              <p className="text-gray-400 max-w-sm mx-auto mb-10 font-light">
-                We have locked in your session for <span className="text-white font-bold">Oct {bookingData.date}</span>. Our producer will reach out shortly.
+              <p className={`max-w-sm mx-auto mb-10 font-light ${isDark ? 'text-gray-400' : 'text-neutral-500'}`}>
+                We have locked in your session for <span className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>Oct {bookingData.date}</span>. Our producer will reach out shortly.
               </p>
               <button onClick={() => setIsSubmitted(false)} className="border-b border-emerald-500 text-emerald-500 uppercase text-xs font-bold tracking-widest pb-1">Create another reservation</button>
             </div>
@@ -224,20 +261,34 @@ const ServicesPage = () => {
           { icon: <ShieldCheck />, title: "Premium Optics", desc: "RED Digital & Leica gear standard." }
         ].map((item, i) => (
           <div key={i} className="space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6">{item.icon}</div>
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-emerald-500 mb-6 ${
+                isDark ? 'bg-emerald-500/10' : 'bg-emerald-100'
+            }`}>
+                {item.icon}
+            </div>
             <h4 className="text-xl font-bold uppercase tracking-tight">{item.title}</h4>
-            <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+            <p className={`text-sm leading-relaxed ${
+                isDark ? 'text-gray-500' : 'text-neutral-500'
+            }`}>{item.desc}</p>
           </div>
         ))}
       </section>
 
-      <section className="py-40 px-6 bg-gradient-to-b from-transparent to-[#0a1a14] text-center">
+      <section className={`py-40 px-6 text-center transition-colors duration-500 ${
+          isDark 
+            ? 'bg-gradient-to-b from-transparent to-[#0a1a14]' 
+            : 'bg-gradient-to-b from-transparent to-neutral-200'
+      }`}>
         <div className="max-w-4xl mx-auto relative">
            <div className="absolute inset-0 bg-emerald-500/10 blur-[100px] rounded-full" />
            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-10 relative z-10">
              Your story <br /> <span className="text-emerald-500">deserves</span> precision.
            </h2>
-           <button className="bg-white text-black px-16 py-6 rounded-full font-black text-xs uppercase tracking-[0.4em] hover:pr-20 transition-all">
+           <button className={`px-16 py-6 rounded-full font-black text-xs uppercase tracking-[0.4em] hover:pr-20 transition-all ${
+               isDark 
+                ? 'bg-white text-black' 
+                : 'bg-black text-white'
+           }`}>
              Let's Collaborate <ArrowRight className="inline ml-2" size={16} />
            </button>
         </div>

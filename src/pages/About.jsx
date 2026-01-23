@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { 
   Plus, ArrowRight, Quote, Award, 
   MapPin, Camera, Sparkles, Target, Zap, Globe, ShieldCheck
 } from 'lucide-react';
+import { ThemeContext } from '../context/themeProvider'; // Ensure path is correct
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  
+  // 1. Access Theme
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     setIsVisible(true);
@@ -46,21 +51,31 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="bg-[#0a1a14] text-white min-h-screen font-sans selection:bg-emerald-500/30 overflow-x-hidden">
+    <div className={`min-h-screen font-sans selection:bg-emerald-500/30 overflow-x-hidden transition-colors duration-500 ${
+      isDark ? 'bg-[#0a1a14] text-white' : 'bg-neutral-50 text-neutral-900'
+    }`}>
       
       {/* 1. PHILOSOPHY SECTION */}
       <section className="py-28 px-6 md:px-12 max-w-screen-2xl mx-auto grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-5 relative group">
-          <div className="rounded-[40px] overflow-hidden aspect-[3/4] border border-white/10">
+          <div className={`rounded-[40px] overflow-hidden aspect-[3/4] border transition-colors duration-500 ${
+            isDark ? 'border-white/10' : 'border-neutral-200 shadow-xl'
+          }`}>
             <img 
               src="https://images.unsplash.com/photo-1554080353-a576cf803bda?w=500&auto=format&fit=crop&q=60" 
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] group-hover:scale-110" 
               alt="Studio vibe" 
             />
           </div>
-          <div className="absolute -bottom-8 -right-8 bg-emerald-950 p-10 rounded-3xl hidden md:block border border-emerald-500/20 shadow-2xl">
+          <div className={`absolute -bottom-8 -right-8 p-10 rounded-3xl hidden md:block border shadow-2xl transition-colors duration-500 ${
+            isDark 
+              ? 'bg-emerald-950 border-emerald-500/20' 
+              : 'bg-white border-neutral-100'
+          }`}>
              <Quote className="text-emerald-500 mb-4" size={32} />
-             <p className="text-sm font-bold tracking-widest uppercase">Legacy over <br /> moments.</p>
+             <p className={`text-sm font-bold tracking-widest uppercase ${
+                isDark ? 'text-white' : 'text-neutral-900'
+             }`}>Legacy over <br /> moments.</p>
           </div>
         </div>
         <div className="lg:col-span-7 space-y-12">
@@ -68,29 +83,39 @@ const AboutPage = () => {
             Our vision is <br /> 
             <span className="text-emerald-500 lowercase">Emotion Over Perfection.</span>
           </h2>
-          <div className="space-y-6 text-gray-400 text-lg leading-relaxed font-light">
+          <div className={`space-y-6 text-lg leading-relaxed font-light ${
+             isDark ? 'text-gray-400' : 'text-neutral-600'
+          }`}>
             <p>
-              Founded on the principle that modern imagery has become too sterile, <span className="text-white font-medium italic">SR Production</span> was born to bring back the cinematic soul. We use light as a sculptor and shadow as a storyteller.
+              Founded on the principle that modern imagery has become too sterile, <span className={`font-medium italic ${isDark ? 'text-white' : 'text-neutral-900'}`}>SR Production</span> was born to bring back the cinematic soul. We use light as a sculptor and shadow as a storyteller.
             </p>
           </div>
-          <button className="flex items-center gap-4 text-emerald-400 font-bold text-xs tracking-[0.4em] group">
+          <button className="flex items-center gap-4 text-emerald-500 font-bold text-xs tracking-[0.4em] group hover:opacity-80 transition-opacity">
             Our Portfolio <ArrowRight size={16} className="group-hover:translate-x-3 transition-transform" />
           </button>
         </div>
       </section>
 
       {/* 2. CREATIVE DIRECTOR SECTION */}
-      <section className="py-32 bg-[#0a1a14]/30 border-y border-white/5 relative">
+      <section className={`py-32 border-y relative transition-colors duration-500 ${
+        isDark 
+          ? 'bg-[#0a1a14]/30 border-white/5' 
+          : 'bg-white border-neutral-200'
+      }`}>
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <div className="order-2 lg:order-1">
               <span className="text-emerald-500 font-serif text-3xl block mb-6 italic">Founder & Lead Photographer</span>
               <h3 className="text-6xl md:text-8xl font-black tracking-tighter mb-8">Shivam<br /> Rajak</h3>
-              <p className="text-gray-400 text-lg font-light leading-relaxed mb-10 max-w-lg">
-                Shivam Rajak is the creative force behind <span className="text-white italic">SR Production</span>,
+              <p className={`text-lg font-light leading-relaxed mb-10 max-w-lg ${
+                isDark ? 'text-gray-400' : 'text-neutral-600'
+              }`}>
+                Shivam Rajak is the creative force behind <span className={`italic ${isDark ? 'text-white' : 'text-neutral-900'}`}>SR Production</span>,
                 dedicated to capturing royal wedding stories with emotional depth and cinematic finesse.
               </p>
-              <div className="flex gap-10 border-t border-white/10 pt-10">
+              <div className={`flex gap-10 border-t pt-10 ${
+                isDark ? 'border-white/10' : 'border-neutral-200'
+              }`}>
                 <div>
                   <p className="text-3xl font-black uppercase">300+</p>
                   <p className="text-[10px] uppercase tracking-widest text-emerald-500/60 font-bold">Weddings Covered</p>
@@ -102,7 +127,7 @@ const AboutPage = () => {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-full border-4 border-emerald-500/20 group">
+              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-full border-4 border-emerald-500/20 group shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200"
                   className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
@@ -122,17 +147,25 @@ const AboutPage = () => {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
            {processSteps.map((step, i) => (
-             <div key={i} className="p-10 border border-white/5 bg-white/[0.02] rounded-[32px] hover:bg-emerald-500/5 hover:border-emerald-500/30 transition-all duration-500 group">
+             <div key={i} className={`p-10 border rounded-[32px] transition-all duration-500 group ${
+               isDark 
+                ? 'border-white/5 bg-white/[0.02] hover:bg-emerald-500/5 hover:border-emerald-500/30' 
+                : 'border-neutral-200 bg-white shadow-sm hover:shadow-xl hover:border-emerald-500/30'
+             }`}>
                 <span className="text-4xl font-serif text-emerald-500/30 group-hover:text-emerald-500 transition-colors block mb-8">{step.id}</span>
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-4">{step.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed font-light">{step.desc}</p>
+                <p className={`text-sm leading-relaxed font-light ${
+                   isDark ? 'text-gray-500' : 'text-neutral-500'
+                }`}>{step.desc}</p>
              </div>
            ))}
         </div>
       </section>
 
       {/* 4. UPDATED VALUES GRID (Bento Modern Matrix) */}
-      <section className="py-32 px-6 md:px-12 bg-[#050a08] relative overflow-hidden border-t border-white/5">
+      <section className={`py-32 px-6 md:px-12 relative overflow-hidden border-t ${
+        isDark ? 'bg-[#050a08] border-white/5' : 'bg-white border-neutral-100'
+      }`}>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
         
         <div className="max-w-screen-2xl mx-auto">
@@ -140,28 +173,46 @@ const AboutPage = () => {
             <h2 className="text-4xl font-black uppercase tracking-tighter">Our Core <span className="text-emerald-500">Values</span></h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-[40px] overflow-hidden shadow-2xl">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px rounded-[40px] overflow-hidden shadow-2xl ${
+             isDark ? 'bg-white/5 border border-white/5' : 'bg-neutral-200 border border-neutral-200'
+          }`}>
             {values.map((v, i) => (
               <div 
                 key={i} 
-                className="group relative bg-[#0a1a14] p-12 transition-all duration-500 hover:bg-[#0d221a]"
+                className={`group relative p-12 transition-all duration-500 ${
+                   isDark 
+                    ? 'bg-[#0a1a14] hover:bg-[#0d221a]' 
+                    : 'bg-white hover:bg-emerald-50/30'
+                }`}
               >
                 {/* Header: Icon & Background Watermark */}
                 <div className="flex justify-between items-start mb-16">
-                  <div className="p-4 bg-emerald-500/5 rounded-2xl text-emerald-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-lg">
+                  <div className={`p-4 rounded-2xl text-emerald-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-lg ${
+                    isDark ? 'bg-emerald-500/5' : 'bg-emerald-100/50'
+                  }`}>
                     {v.icon}
                   </div>
-                  <span className="text-5xl font-black opacity-[0.03] group-hover:opacity-[0.1] transition-opacity leading-none select-none tracking-tighter">
+                  <span className={`text-5xl font-black transition-opacity leading-none select-none tracking-tighter ${
+                    isDark 
+                        ? 'opacity-[0.03] group-hover:opacity-[0.1]' 
+                        : 'opacity-[0.05] group-hover:opacity-[0.1] text-neutral-900'
+                  }`}>
                     {v.stat}
                   </span>
                 </div>
 
                 {/* Body Content */}
                 <div className="space-y-4 relative z-10">
-                  <h5 className="text-sm uppercase tracking-[0.4em] font-black text-white group-hover:text-emerald-500 transition-colors">
+                  <h5 className={`text-sm uppercase tracking-[0.4em] font-black transition-colors ${
+                    isDark 
+                        ? 'text-white group-hover:text-emerald-500' 
+                        : 'text-neutral-900 group-hover:text-emerald-600'
+                  }`}>
                     {v.title}
                   </h5>
-                  <p className="text-gray-500 text-[13px] leading-relaxed font-light italic">
+                  <p className={`text-[13px] leading-relaxed font-light italic ${
+                     isDark ? 'text-gray-500' : 'text-neutral-500'
+                  }`}>
                     "{v.desc}"
                   </p>
                 </div>
@@ -184,7 +235,11 @@ const AboutPage = () => {
           <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12">
             Let’s Preserve <br /> <span className="text-emerald-500">Meaning.</span>
           </h2>
-          <button className="group relative bg-white text-black px-16 py-6 rounded-full font-black text-[10px] uppercase tracking-[0.4em] overflow-hidden transition-all hover:bg-emerald-500 hover:text-white">
+          <button className={`group relative px-16 py-6 rounded-full font-black text-[10px] uppercase tracking-[0.4em] overflow-hidden transition-all ${
+             isDark 
+                ? 'bg-white text-black hover:bg-emerald-500 hover:text-white' 
+                : 'bg-neutral-900 text-white hover:bg-emerald-600 hover:shadow-xl'
+          }`}>
             <span className="relative z-10">Start a Conversation</span>
           </button>
         </div>
