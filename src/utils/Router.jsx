@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Home from "../User/home/Home";
 import Login from "../Admin/auth/Login";
 import Dashborad from "../Admin/dashborad/Dashborad";
@@ -8,11 +7,13 @@ import ProtectedRoutes from "../components/ProtectedRoutes";
 import Images from "../Admin/All_Images/Images";
 import CreateImage from "../Admin/create_image/CreateImage";
 import UpdatedImages from "../Admin/updated_image/UpdatedImages";
-import Register from "../Admin/auth/register";
+import Register from "../Admin/auth/Register";
 import Customer from "../Admin/customer/Customer";
 import CreateCustomer from "../Admin/customer/create_customer/CreateCustomer";
 import UpdateCustomer from "../Admin/customer/update_customer/UpdateCustomer";
 import Booking from "../Admin/booking/Booking";
+import CreateBooking from "../Admin/booking/create_booking/createBooking";
+import UpdateBooking from "../Admin/booking/update_booking/UpdateBooking";
 
 const Router = () => {
   return (
@@ -63,10 +64,42 @@ const Router = () => {
             </ProtectedRoutes>
           }
         />
+        <Route
+          path="admin/customers/customer_create"
+          element={
+            <ProtectedRoutes>
+              <CreateCustomer />
+            </ProtectedRoutes>}
+        />
 
-        <Route path="admin/customers/customer_create" element={<ProtectedRoutes><CreateCustomer /></ProtectedRoutes>} />
-        <Route path="admin/customers/customer_update/:customerId" element={<ProtectedRoutes><UpdateCustomer /></ProtectedRoutes>} />
-        <Route path="admin/booking" element={<ProtectedRoutes><Booking /></ProtectedRoutes>} />
+        <Route
+          path="admin/customers/customer_update/:customerId"
+          element={
+            <ProtectedRoutes>
+              <UpdateCustomer />
+            </ProtectedRoutes>
+          } />
+
+        <Route
+          path="admin/booking"
+          element={
+            <ProtectedRoutes>
+              <Booking />
+            </ProtectedRoutes>} />
+        <Route
+          path="admin/booking/booking_create"
+          element={
+            <ProtectedRoutes>
+              <CreateBooking />
+            </ProtectedRoutes>}
+        />
+        <Route
+          path="admin/booking/booking_update/:bookingsId"
+          element={
+            <ProtectedRoutes>
+              <UpdateBooking />
+            </ProtectedRoutes>}
+        />
       </Routes>
     </div>
   );

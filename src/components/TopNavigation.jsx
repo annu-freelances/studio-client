@@ -8,6 +8,8 @@ const TopNavigation = () => {
   let title = "Admin Dashboard";
   if (location.pathname.startsWith("/admin/customers")) {
     title = "Customer Management";
+  } else if (location.pathname.startsWith("/admin/booking")) {
+    title = "Booking Management";
   }
 
   return (

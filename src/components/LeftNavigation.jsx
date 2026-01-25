@@ -6,18 +6,18 @@ const LeftNavigation = () => {
   const location = useLocation();
 
   const menuItems = [
-    { id: 1, icon: LayoutDashboard, label: 'Dashboard', to: '/admin/dashboard', active: true },
-    { id: 2, icon: Calendar, label: 'Bookings', to: '/admin/booking', badgeColor: 'bg-green-500' },
-    { id: 3, icon: User, label: 'Customer', to: '/admin/customers', matchPrefix: '/admin/customers' },
+    { id: 1, icon: LayoutDashboard, label: 'Dashboard', to: '/admin/dashboard' },
+    { id: 2, icon: User, label: 'Customer', to: '/admin/customers', matchPrefix: '/admin/customers' },
+    { id: 3, icon: Calendar, label: 'Bookings', to: '/admin/booking', badgeColor: 'bg-green-500', matchPrefix: '/admin/booking' },
     { id: 4, icon: Images, label: 'Gallery Uploads', to: '/gallery-uploads' },
-    { id: 5, icon: CreditCard, label: 'Payments', to: '/payments',  badgeColor: 'bg-red-500' },
+    { id: 5, icon: CreditCard, label: 'Payments', to: '/payments', badgeColor: 'bg-red-500' },
     { id: 6, icon: Settings, label: 'Settings', to: '/settings', hasArrow: true },
-  ]
+  ];
 
-  // Helper for custom active state for Customer link
-  const isCustomerMenuActive = (pathname) => {
-    return pathname.startsWith('/admin/customers')
-  }
+  // General helper for active menu that matches prefix (for both bookings and customers)
+  const isMenuActiveByPrefix = (pathname, matchPrefix) => {
+    return matchPrefix ? pathname.startsWith(matchPrefix) : false;
+  };
 
   return (
     <div className='w-64 bg-blue-900 h-screen flex flex-col text-white'>
@@ -34,27 +34,30 @@ const LeftNavigation = () => {
       {/* Navigation Menu */}
       <div className='flex-1 py-4 px-3'>
         {menuItems.map((item) => {
-          const Icon = item.icon
-          // Custom active logic for Customer menu only
-          const isActiveCustom =
-            item.matchPrefix
-              ? isCustomerMenuActive(location.pathname)
-              : undefined;
+          const Icon = item.icon;
+
+          // For items with matchPrefix, use custom active logic
+          const isActiveCustom = item.matchPrefix
+            ? isMenuActiveByPrefix(location.pathname, item.matchPrefix)
+            : undefined;
+
           return (
             <NavLink
               key={item.id}
               to={item.to}
               className={({ isActive }) => {
-                const actuallyActive = typeof isActiveCustom === 'boolean'
-                  ? isActiveCustom
-                  : isActive;
+                // Use custom logic for prefix-based routes, else default
+                const actuallyActive =
+                  typeof isActiveCustom === 'boolean'
+                    ? isActiveCustom
+                    : isActive;
                 return `flex items-center justify-between px-4 py-3 rounded-lg mb-2 cursor-pointer transition ${
                   actuallyActive
                     ? 'bg-blue-700 text-white'
                     : 'text-blue-200 hover:bg-blue-800'
                 }`
               }}
-              // Don't use 'end' prop for Customer, so it highlights on all subroutes
+              // Don't use 'end' for items with matchPrefix, so they highlight for subroutes
               end={item.matchPrefix ? false : true}
             >
               <div className='flex items-center gap-3'>

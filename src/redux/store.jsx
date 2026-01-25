@@ -12,19 +12,22 @@ import {
 } from "redux-persist";
 import AdminReducer from "./reducer/AdminSlice";
 import ImagesSlice from "./reducer/ImagesSlice";
-import CustomerSlice from "./reducer/CustomerSlice";
+import CustomersSlice  from "./reducer/CustomerSlice";
+import BookingSlice from "./reducer/BookingSlice";
+
 
 const persistConfig = {
   key: "photographer_root",
   version: 1,
   storage,
-  whitelist: ["admin", "Image", "Customer"], 
+  whitelist: ["admin", "Image", "Customer", "Booking"], 
 };
 
 const rootReducer = combineReducers({
   admin: AdminReducer,
   Image: ImagesSlice,
-  Customer: CustomerSlice
+  Customer: CustomersSlice,
+  Booking: BookingSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
