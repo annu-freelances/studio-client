@@ -283,7 +283,7 @@ const RightUpdateBooking = () => {
             </form>
           </div>
           <div className="py-3 px-4 w-[31%] rounded bg-white shadow">
-            
+            <p className='text-sm text-center font-semibold text-zinc-400'>First booking, then details</p>
           </div>
         </div>
       </div>

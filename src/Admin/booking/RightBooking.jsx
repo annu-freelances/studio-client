@@ -5,6 +5,7 @@ import { CalendarDays, Edit, Plus, Trash2 } from 'lucide-react'
 import { allBooking } from '../api/Booking';
 import { useDispatch, useSelector } from 'react-redux'
 import { setBooking } from '../../redux/reducer/BookingSlice';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const PAGE_SIZE = 6
 
@@ -309,11 +310,17 @@ const RightBooking = () => {
                         </span>
                       </td>
                       <td className="px-4 py-3 flex items-center justify-center mt-1   whitespace-nowrap">
+                        {item.status == "CONFIRMED" && (
+                          <Link
+                            to={`/admin/booking/booking_update/${item._id}`}
+                            className="text-blue-600  hover:underline text-xs mr-3"
+                          >
+                            <FaInfoCircle className='w-4 h-4' />
+                          </Link>
+                        )}
                         <Link
-                        to={`/admin/booking/booking_update/${item._id}`}
+                          to={`/admin/booking/booking_update/${item._id}`}
                           className="text-blue-600  hover:underline text-xs mr-3"
-                          
-                          
                         >
                           <Edit className='w-4 h-4' />
                         </Link>
@@ -389,3 +396,4 @@ const RightBooking = () => {
 }
 
 export default RightBooking
+//admin/booking/booking_Details/:bookingsId

@@ -14,6 +14,7 @@ import UpdateCustomer from "../Admin/customer/update_customer/UpdateCustomer";
 import Booking from "../Admin/booking/Booking";
 import CreateBooking from "../Admin/booking/create_booking/createBooking";
 import UpdateBooking from "../Admin/booking/update_booking/UpdateBooking";
+import DetailBooking from "../Admin/booking/details_booking/DetailBooking";
 
 const Router = () => {
   return (
@@ -98,6 +99,13 @@ const Router = () => {
           element={
             <ProtectedRoutes>
               <UpdateBooking />
+            </ProtectedRoutes>}
+        />
+        <Route
+          path="admin/booking/booking_Details/:bookingsId"
+          element={
+            <ProtectedRoutes>
+              <DetailBooking />
             </ProtectedRoutes>}
         />
       </Routes>

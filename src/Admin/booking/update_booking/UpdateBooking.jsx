@@ -5,9 +5,9 @@ import RightUpdateBooking from "../update_booking/RightUpdateBooking"
 const UpdateBooking = () => {
   return (
     <div className='flex w-full h-screen'>
-    <LeftNavigation />
-    <RightUpdateBooking />
-  </div>
+      <LeftNavigation />
+      <RightUpdateBooking />
+    </div>
   )
 }
 
